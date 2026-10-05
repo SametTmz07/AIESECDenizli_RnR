@@ -1,0 +1,89 @@
+:root {
+  /* ========================================================
+     Görsel Palet Renkleri (Abstract & Vurgular)
+     ======================================================== */
+  --brand-primary: #00A551;            /* Denizli Yeşili */
+  --brand-secondary: #5B754F;          /* Yosun Yeşili */
+  --brand-tertiary: #00A551;           /* Genel UI vurgusu */
+  --brand-neutral: #161920;            /* Koyu Kömür Slate */
+
+  /* Soyut Işıma Degradeleri */
+  --glow-primary: rgba(0, 165, 81, 0.12);
+  --glow-tertiary: rgba(0, 165, 81, 0.08);
+  --glow-secondary: rgba(91, 117, 79, 0.20);
+  --glow-purple: rgba(117, 82, 204, 0.15);
+  --glow-orange: rgba(244, 137, 36, 0.14);
+
+  /* Karanlık Tema Zemin & Paneller */
+  --bg-base: #080a0e;
+  --bg-surface: #0f1218;
+  --bg-card: rgba(20, 24, 32, 0.78);
+  --bg-header: #131722;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(0, 165, 81, 0.25);
+
+  /* Tipografi Renkleri */
+  --text-main: #ffffff;
+  --text-muted: #949ba8;
+  --text-bright: #f8fafc;
+
+  /* ========================================================
+     Podyum & Sıralama Renkleri
+     ======================================================== */
+  --gold: #f59e0b;
+  --gold-glow: rgba(245, 158, 11, 0.5);
+  --silver: #cbd5e1;
+  --silver-glow: rgba(203, 213, 225, 0.35);
+  --bronze: #d97706;
+  --bronze-glow: rgba(217, 119, 6, 0.35);
+
+  /* ========================================================
+     AIESEC Departman Renkleri (Güncel & Canlı)
+     ======================================================== */
+  --dept-bda: #0CB9C1;
+  --dept-bde: #F48924;
+  --dept-igt-grad: linear-gradient(135deg, #0CB9C1 0%, #F48924 100%);
+  --dept-igv: #F85A40;
+  --dept-ocvp: #F85A40;
+  --dept-mkt: #ffc845;
+  --dept-ogx: #7552CC;
+  --dept-tm: #00C16E;
+  --dept-fnl: #94a3b8;
+
+  /* ========================================================
+     Canlı NTT Ürün Renkleri
+     ======================================================== */
+  --ntt-total: #2563EB;
+  --ntt-igv: #F85A40;
+  --ntt-ogv: #7552CC;
+  --ntt-igte: #F48924;
+  --ntt-ogte: #8B5CF6;
+  --ntt-igta: #0CB9C1;
+  --ntt-ogta: #EC4899;
+  --ntt-b2b: #10B981;
+  --ntt-mkt: #FFC845;
+
+  /* ========================================================
+     Yerleşim ve Keskin Kenarlıklar
+     ======================================================== */
+  --container-max-width: 1380px;
+  --page-gutter: clamp(14px, 2.5vw, 32px);
+  
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+
+  /* Podyum Fluid Ölçüleri */
+  --pillar-1-height: clamp(270px, 44vh, 420px);
+  --pillar-2-height: clamp(200px, 33vh, 310px);
+  --pillar-3-height: clamp(140px, 23vh, 220px);
+
+  --avatar-size-champ: clamp(74px, 9vw, 98px);
+  --avatar-size-other: clamp(62px, 7.5vw, 82px);
+
+  --font-title: clamp(1rem, 1.5vw, 1.25rem);
+  --font-name: clamp(1.1rem, 1.6vw, 1.45rem);
+  --font-points: clamp(1.15rem, 1.65vw, 1.5rem);
+
+  --spring-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

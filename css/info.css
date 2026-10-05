@@ -1,0 +1,326 @@
+/* Plain reading layout and branch contact details, shared by both themes. */
+.home-shortcuts {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: -28px;
+}
+
+.home-shortcut {
+  --shortcut-accent: var(--brand-primary);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 18px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--bg-surface) 38%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+#nttShortcut {
+  --shortcut-accent: var(--brand-tertiary);
+}
+
+.shortcut-label {
+  font-size: 0.83rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.home-shortcut:hover,
+.home-shortcut:focus-visible {
+  background: color-mix(in srgb, var(--shortcut-accent) 28%, transparent);
+  border-color: color-mix(in srgb, var(--shortcut-accent) 60%, transparent);
+  color: var(--text-main);
+}
+
+.home-shortcut:hover .shortcut-description,
+.home-shortcut:focus-visible .shortcut-description {
+  color: var(--text-main);
+}
+
+.shortcut-description {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  width: 240px;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 10px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Bridge the gap so the explanation can be hovered without disappearing. */
+.shortcut-description::before {
+  content: '';
+  position: absolute;
+  height: 9px;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+}
+
+.home-shortcut:hover .shortcut-description,
+.home-shortcut:focus-visible .shortcut-description {
+  visibility: visible;
+  opacity: 1;
+}
+
+.home-shortcut.description-dismissed .shortcut-description {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.footer-contact {
+  width: 100%;
+  padding: 14px 0 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  line-height: 1.6;
+  text-align: left;
+}
+
+.footer-contact h2 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.footer-contact > p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.footer-contact-details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px 24px;
+  margin-top: 18px;
+  font-size: 0.85rem;
+}
+
+.footer-contact-details dt {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  margin-bottom: 2px;
+}
+
+.footer-contact-details dd {
+  overflow-wrap: anywhere;
+}
+
+.footer-contact-address {
+  grid-column: 1 / -1;
+}
+
+.footer-contact a {
+  color: var(--text-main);
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .footer-contact-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .home-shortcuts {
+    gap: 8px;
+  }
+
+  .home-shortcut {
+    position: static;
+    padding: 8px 15px;
+    /* Let mobile tooltips use the row as their containing block. */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .shortcut-label {
+    font-size: 0.78rem;
+  }
+
+  .shortcut-description {
+    left: 0;
+    right: 0;
+    width: auto;
+    transform: none;
+  }
+
+  .footer-contact-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-nav {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-legal-link {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: normal;
+  padding: 4px 6px;
+  text-decoration: none;
+}
+
+.footer-legal-link:hover {
+  color: var(--text-main);
+  text-decoration: underline;
+}
+
+.contact-section {
+  margin-top: 32px;
+  padding: clamp(20px, 4vw, 32px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  line-height: 1.7;
+}
+
+.contact-section h3 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
+
+.contact-section > p {
+  color: var(--text-muted);
+}
+
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 32px;
+  margin: 24px 0;
+}
+
+.contact-details dt {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-bottom: 3px;
+}
+
+.contact-details dd {
+  overflow-wrap: anywhere;
+}
+
+.contact-address {
+  grid-column: 1 / -1;
+}
+
+.contact-section a,
+.legal-page a:not(.brand-logo) {
+  color: var(--brand-primary);
+  text-underline-offset: 3px;
+}
+
+.contact-note {
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+}
+
+.footer-legal-link:focus-visible,
+.contact-section a:focus-visible,
+.legal-page a:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.legal-page::before {
+  display: none;
+}
+
+.legal-document {
+  width: min(100%, 800px);
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 64px) var(--page-gutter);
+  font-size: 0.96rem;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.legal-back-link {
+  font-size: 0.9rem;
+}
+
+.legal-heading {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.legal-heading h1 {
+  margin: 20px 0 8px;
+  font-size: clamp(1.65rem, 4vw, 2.15rem);
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+.legal-meta {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.legal-document section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.legal-document h2 {
+  font-size: 1.12rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.legal-document p + p,
+.legal-document ul + p {
+  margin-top: 12px;
+}
+
+.legal-document ul {
+  padding-left: 22px;
+}
+
+.legal-document li + li {
+  margin-top: 7px;
+}
+
+.legal-contact {
+  margin-top: 20px;
+  padding: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.legal-end-link {
+  display: inline-block;
+  margin-top: 28px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 540px) {
+  .contact-details {
+    grid-template-columns: 1fr;
+  }
+}

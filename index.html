@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="AIESEC Denizli haftalık başarıları, aylık sonuçları ve şube sıralamaları.">
+  <meta name="theme-color" content="#00a551">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="AIESEC Denizli">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <script src="js/theme.js"></script>
+  <script src="js/pwa.js" defer></script>
+  <title>AIESEC Denizli</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="assets/vendor/confetti.browser.min.js" defer></script>
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/podium.css">
+  <link rel="stylesheet" href="css/tables.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/info.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/usability.css">
+  <link rel="stylesheet" href="css/city-map.css">
+  <link rel="stylesheet" href="css/denizli.css">
+  <link rel="stylesheet" href="css/polish.css">
+  <link rel="stylesheet" href="css/pwa.css">
+</head>
+<body class="has-city-map">
+  <div class="city-map-background" id="cityMapBackground" aria-hidden="true"></div>
+  <a class="skip-link" href="#main-content">Ana içeriğe atla</a>
+
+  <!-- KÖK DÜZEYİ AMBİYANS IŞIMASI -->
+  <div class="ntt-ambient-bg" id="nttAmbientBg"></div>
+
+  <!-- GLOBAL ÜST NAVİGASYON -->
+  <nav class="global-navbar" aria-label="Ana gezinme">
+    <div class="global-navbar-inner">
+      <div class="nav-left">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menüyü Aç" aria-controls="mobileDrawer" aria-expanded="false" aria-haspopup="dialog">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <a href="#home" class="brand-logo" id="brandLogo" data-target="home" aria-label="AIESEC Denizli ana sayfa">
+          <span class="logo-aiesec">AIESEC</span>
+          <span class="logo-city">DENİZLİ</span>
+        </a>
+      </div>
+
+      <div class="nav-actions">
+      <ul class="nav-links desktop-only">
+        <li><a href="#home" class="nav-item active" data-target="home">Ana Sayfa</a></li>
+        <li><a href="#rnr" class="nav-item" data-target="rnr">RnR</a></li>
+        <li><a href="#alltime" class="nav-item" data-target="alltime">AllTime</a></li>
+        <li><a href="#ntt" class="nav-item" data-target="ntt">NTT</a></li>
+        <li><a href="#denizli" class="nav-item" data-target="denizli">Denizli</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Koyu temaya geç" aria-pressed="false" title="Koyu temaya geç">
+        <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13.1A9 9 0 0 1 10.9 3.1a9 9 0 1 0 10 10Z"/></svg>
+      </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBİL ÇEKMECE (DRAWER) -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobil gezinme" aria-hidden="true" inert>
+    <div class="drawer-header">
+      <div class="brand-logo">
+        <span class="logo-aiesec">AIESEC</span>
+        <span class="logo-city">DENİZLİ</span>
+      </div>
+      <button class="drawer-close" id="drawerClose" type="button" aria-label="Menüyü kapat">&times;</button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="#home" class="drawer-item active" data-target="home">Ana Sayfa</a></li>
+      <li><a href="#rnr" class="drawer-item" data-target="rnr">RnR</a></li>
+      <li><a href="#alltime" class="drawer-item" data-target="alltime">AllTime</a></li>
+      <li><a href="#ntt" class="drawer-item" data-target="ntt">NTT</a></li>
+      <li><a href="#denizli" class="drawer-item" data-target="denizli">Denizli</a></li>
+    </ul>
+  </aside>
+
+  <!-- ANA SAYFA İÇERİK TAŞIYICISI -->
+  <main class="app-container" id="main-content" tabindex="-1" aria-label="Ana Sayfa">
+
+    <!-- 1. GÖRÜNÜM: ANA SAYFA -->
+    <section id="view-home" class="page-view active">
+      <div class="hero-cover-container">
+        <div class="photo-slot hero-photo-slot" data-slot="[FOTO-01]">
+          <div class="slot-badge">[FOTO-01] Kapak Görseli Alanı</div>
+        </div>
+        <div class="hero-text-overlay">
+          <span class="slot-text-tag">[YAZI-01]</span>
+          <h1 class="hero-main-title">AIESEC DENİZLİ</h1>
+          <p class="hero-purpose">Gönüllülerimizin haftalık başarıları, aylık sonuçları ve şube sıralamaları.</p>
+        </div>
+      </div>
+
+      <nav class="home-shortcuts" aria-label="Sıralama kısayolları">
+        <a class="home-shortcut" id="weeklyShortcut" href="#rnr" data-target="rnr" aria-label="Haftalık RnR" aria-describedby="weeklyShortcutDescription">
+          <span class="shortcut-label">Haftalık RnR</span>
+          <span class="shortcut-description" id="weeklyShortcutDescription" role="tooltip">Haftanın puan sıralaması ve departman ilk üçleri.</span>
+        </a>
+        <a class="home-shortcut" id="alltimeShortcut" href="#alltime" data-target="alltime" aria-label="AllTime" aria-describedby="alltimeShortcutDescription">
+          <span class="shortcut-label">AllTime</span>
+          <span class="shortcut-description" id="alltimeShortcutDescription" role="tooltip">Aylık sıralamalar, rozetler ve sezon arşivi.</span>
+        </a>
+        <a class="home-shortcut" id="nttShortcut" href="#ntt" data-target="ntt" aria-label="NTT" aria-describedby="nttShortcutDescription">
+          <span class="shortcut-label">NTT</span>
+          <span class="shortcut-description" id="nttShortcutDescription" role="tooltip">Küresel ve Türkiye şube liglerindeki sıralamalar.</span>
+        </a>
+      </nav>
+
+      <div class="home-quick-help">
+        <a class="find-member-link" id="findMemberLink" href="#alltime" data-find-member>İsmimi bul <span aria-hidden="true">↗</span></a>
+        <details class="site-guide">
+          <summary>Bu siteyi nasıl kullanırım?</summary>
+          <div class="site-guide-content">
+            <p><strong>Haftalık RnR:</strong> Haftanın puan sıralamasını ve departman ilk üçlerini gösterir.</p>
+            <p><strong>AllTime:</strong> Seçtiğin ayın sonuçlarını, sezon toplamlarını ve kişilerin rozetlerini gösterir. İsim veya departmanla arayabilirsin.</p>
+            <p><strong>NTT:</strong> Denizli'nin küresel ve Türkiye şube liglerindeki yerini gösterir.</p>
+            <p><strong>Puanlar ve rozetler:</strong> Puanlar gönüllü faaliyetlerine ait onaylı kayıtlardan hesaplanır; çalışma saati değildir. Eşit puanlar aynı sırayı paylaşır. Rozet açıklamaları AllTime'daki sözlükte bulunur.</p>
+            <p><strong>Güncellik:</strong> Sonuçlar yayımlandığında değişir. Sayfanın yenilenmesi yeni bir yayın yapıldığı anlamına gelmez; yayın tarihini sonuçların yanında görebilirsin.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="seamless-leader-flow">
+        <div class="leader-photo-column">
+          <div class="photo-slot leader-photo-slot" data-slot="[FOTO-02]">
+            <div class="slot-badge">[FOTO-02] Şube Başkanı Portresi</div>
+          </div>
+        </div>
+
+        <div class="leader-text-column">
+          <div class="leader-meta-row">
+            <span class="slot-text-badge">[YAZI-02] Rol / Ünvan</span>
+            <span class="slot-text-badge muted">[YAZI-03] Dönem</span>
+          </div>
+          <h2 class="slot-lead-name">[YAZI-04] Lider Adı Soyadı</h2>
+          
+          <div class="text-placeholder-box">
+            <span class="text-slot-line highlight">[YAZI-05] Ana Vizyon / Mesaj Paragrafı</span>
+            <span class="text-slot-line">[YAZI-06] İkinci Açıklama Metni Alanı</span>
+            <span class="text-slot-line short">[YAZI-07] Üçüncü Ek Satır</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="seamless-departments-flow">
+        <div class="flow-header">
+          <h3 class="flow-heading">YÖNETİM KURULU</h3>
+          <span class="flow-subheading">EB PEAK</span>
+        </div>
+
+        <div class="departments-seamless-grid">
+          <div class="dept-entry"><div class="dept-entry-header"><span class="dept-tag tag-bda">[YAZI-08] BDa</span></div><div class="photo-slot dept-photo-slot" data-slot="[FOTO-03]"><div class="slot-badge mini">[FOTO-03]</div></div><div class="dept-text-lines-container"><span class="dept-slot-line bold">[YAZI-09] Ad Soyad</span><span class="dept-slot-line">[YAZI-10] Mesaj / Görev 1</span><span class="dept-slot-line short">[YAZI-11] Mesaj / Görev 2</span></div></div>
+          <div class="dept-entry"><div class="dept-entry-header"><span class="dept-tag tag-bde">[YAZI-13] BDe</span></div><div class="photo-slot dept-photo-slot" data-slot="[FOTO-04]"><div class="slot-badge mini">[FOTO-04]</div></div><div class="dept-text-lines-container"><span class="dept-slot-line bold">[YAZI-14] Ad Soyad</span><span class="dept-slot-line">[YAZI-15] Mesaj / Görev 1</span><span class="dept-slot-line short">[YAZI-16] Mesaj / Görev 2</span></div></div>
+          <div class="dept-entry"><div class="dept-entry-header"><span class="dept-tag tag-igt">[YAZI-18] iGT</span></div><div class="photo-slot dept-photo-slot" data-slot="[FOTO-05]"><div class="slot-badge mini">[FOTO-05]</div></div><div class="dept-text-lines-container"><span class="dept-slot-line bold">[YAZI-19] Ad Soyad</span><span class="dept-slot-line">[YAZI-20] Mesaj / Görev 1</span><span class="dept-slot-line short">[YAZI-21] Mesaj / Görev 2</span></div></div>
+          <div class="dept-entry"><div class="dept-entry-header"><span class="dept-tag tag-igv">[YAZI-23] iGV</span></div><div class="photo-slot dept-photo-slot" data-slot="[FOTO-06]"><div class="slot-badge mini">[FOTO-06]</div></div><div class="dept-text-lines-container"><span class="dept-slot-line bold">[YAZI-24] Ad Soyad</span><span class="dept-slot-line">[YAZI-25] Mesaj / Görev 1</span><span class="dept-slot-line short">[YAZI-26] Mesaj / Görev 2</span></div></div>
+          <div class="dept-entry"><div class="dept-entry-header"><span class="dept-tag tag-mkt">[YAZI-28] MKT</span></div><div class="photo-slot dept-photo-slot" data-slot="[FOTO-07]"><div class="slot-badge mini">[FOTO-07]</div></div><div class="dept-text-lines-container"><span class="dept-slot-line bold">[YAZI-29] Ad Soyad</span><span class="dept-slot-line">[YAZI-30] Mesaj / Görev 1</span><span class="dept-slot-line short">[YAZI-31] Mesaj / Görev 2</span></div></div>
+          <div class="dept-entry"><div class="dept-entry-header"><span class="dept-tag tag-ogx">[YAZI-33] oGX</span></div><div class="photo-slot dept-photo-slot" data-slot="[FOTO-08]"><div class="slot-badge mini">[FOTO-08]</div></div><div class="dept-text-lines-container"><span class="dept-slot-line bold">[YAZI-34] Ad Soyad</span><span class="dept-slot-line">[YAZI-35] Mesaj / Görev 1</span><span class="dept-slot-line short">[YAZI-36] Mesaj / Görev 2</span></div></div>
+          <div class="dept-entry"><div class="dept-entry-header"><span class="dept-tag tag-tm">[YAZI-38] TM</span></div><div class="photo-slot dept-photo-slot" data-slot="[FOTO-09]"><div class="slot-badge mini">[FOTO-09]</div></div><div class="dept-text-lines-container"><span class="dept-slot-line bold">[YAZI-39] Ad Soyad</span><span class="dept-slot-line">[YAZI-40] Mesaj / Görev 1</span><span class="dept-slot-line short">[YAZI-41] Mesaj / Görev 2</span></div></div>
+          <div class="dept-entry"><div class="dept-entry-header"><span class="dept-tag tag-fnl">[YAZI-43] F&L</span></div><div class="photo-slot dept-photo-slot" data-slot="[FOTO-10]"><div class="slot-badge mini">[FOTO-10]</div></div><div class="dept-text-lines-container"><span class="dept-slot-line bold">[YAZI-44] Ad Soyad</span><span class="dept-slot-line">[YAZI-45] Mesaj / Görev 1</span><span class="dept-slot-line short">[YAZI-46] Mesaj / Görev 2</span></div></div>
+        </div>
+      </div>
+
+      <!-- SEAMLESS BÖLÜM 4: TANITIM VİDEOSU VE SOSYAL MEDYA KANALLARI -->
+      <div class="seamless-media-flow">
+        <div class="flow-header center-align">
+          <h3 class="flow-heading">ŞUBE TANITIM VİDEOSU</h3>
+          <span class="flow-subheading">AIESEC DENİZLİ ROLL CALL</span>
+        </div>
+
+        <div class="video-embed-zone">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" 
+            title="AIESEC Denizli Tanıtım Videosu"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="social-channels-flow">
+          <span class="channels-caption">RESMİ INSTAGRAM HESAPLARIMIZ</span>
+          <div class="social-square-grid">
+            <a href="https://instagram.com/aiesecdenizli" target="_blank" rel="noopener noreferrer" class="social-square-card"><div class="social-box-icon">🌐</div><span class="social-account-name">@aiesecdenizli</span></a>
+            <a href="https://instagram.com/denizli.bda" target="_blank" rel="noopener noreferrer" class="social-square-card"><div class="social-box-icon">💼</div><span class="social-account-name">@denizli.bda</span></a>
+            <a href="https://instagram.com/denizli.bde" target="_blank" rel="noopener noreferrer" class="social-square-card"><div class="social-box-icon">🤝</div><span class="social-account-name">@denizli.bde</span></a>
+            <a href="https://instagram.com/denizli.igt" target="_blank" rel="noopener noreferrer" class="social-square-card"><div class="social-box-icon">🚀</div><span class="social-account-name">@denizli.igt</span></a>
+            <a href="https://instagram.com/denizli.igv" target="_blank" rel="noopener noreferrer" class="social-square-card"><div class="social-box-icon">🌱</div><span class="social-account-name">@denizli.igv</span></a>
+            <a href="https://instagram.com/denizli.mkt" target="_blank" rel="noopener noreferrer" class="social-square-card"><div class="social-box-icon">📣</div><span class="social-account-name">@denizli.mkt</span></a>
+            <a href="https://instagram.com/denizli.ogx" target="_blank" rel="noopener noreferrer" class="social-square-card"><div class="social-box-icon">✈️</div><span class="social-account-name">@denizli.ogx</span></a>
+            <a href="https://instagram.com/denizli.tm" target="_blank" rel="noopener noreferrer" class="social-square-card"><div class="social-box-icon">👥</div><span class="social-account-name">@denizli.tm</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEAMLESS BÖLÜM 5: RNR SİSTEMİ NASIL ÇALIŞIR? -->
+      <div class="seamless-rnr-explain-flow">
+        <div class="flow-header">
+          <h3 class="flow-heading">RNR SİSTEMİ NASIL ÇALIŞIR?</h3>
+          <span class="flow-subheading">PERFORMANS VE ÖDÜLLENDİRME DİNAMİĞİ</span>
+        </div>
+
+        <div class="rnr-explain-row">
+          <div class="rnr-explain-media">
+            <div class="photo-slot rnr-photo-slot" data-slot="[FOTO-11]">
+              <div class="slot-badge">[FOTO-11] Haftalık Podyum Ruhu</div>
+            </div>
+          </div>
+          <div class="rnr-explain-content">
+            <div class="leader-meta-row">
+              <span class="slot-text-badge">01 // HAFTALIK ZİRVE</span>
+              <span class="slot-text-badge muted">KÜRSÜ YARIŞI</span>
+            </div>
+            <h4 class="slot-lead-name">Performansını Görünür Kıl</h4>
+            <div class="text-placeholder-box">
+              <span class="text-slot-line highlight">Her hafta operasyonel faaliyetler ve takım hedefleri doğrultusunda puanlar toplanır.</span>
+              <span class="text-slot-line">Haftanın ilk 3 ismi interaktif podyumda zirveye çıkar, tüm şubenin alkışını toplar.</span>
+              <span class="text-slot-line short">Departman bazlı sıralamalarla şeffaf bir motivasyon kültürü yaşatılır.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rnr-explain-row reverse">
+          <div class="rnr-explain-media">
+            <div class="photo-slot rnr-photo-slot" data-slot="[FOTO-12]">
+              <div class="slot-badge">[FOTO-12] Sezonluk Başarı Müzesi</div>
+            </div>
+          </div>
+          <div class="rnr-explain-content">
+            <div class="leader-meta-row">
+              <span class="slot-text-badge">02 // AYIN VE DÖNEMİN MVP'LERİ</span>
+              <span class="slot-text-badge muted">ROZET SÖZLÜĞÜ</span>
+            </div>
+            <h4 class="slot-lead-name">Kümülatif Zirve ve Rozetler</h4>
+            <div class="text-placeholder-box">
+              <span class="text-slot-line highlight">Haftalık başarılar ay sonunda birleşir; istikrar, şampiyonluk ve streak rozetlerine dönüşür.</span>
+              <span class="text-slot-line">AllTime arşivinde yerini alarak dönem boyu adını ve katkını şube tarihine yazdırırsın.</span>
+              <span class="text-slot-line short">Her çabanın karşılık bulduğu yaşayan bir liderlik ekosistemi.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 2. GÖRÜNÜM: RnR -->
+    <section id="view-rnr" class="page-view">
+      <div class="podium-intro">
+      <header class="top-bar">
+        <div class="top-bar-title">
+          <span class="trophy-icon">🏆</span> HAFTANIN ZİRVESİ
+          <span class="sub-header-tag">CANLI LİDERLİK KÜRSÜSÜ</span>
+        </div>
+        <div class="top-bar-right-group">
+          <button class="podium-mini-reset confetti-toggle" id="rnrConfettiBtn" type="button" aria-label="Konfeti açık; kapat" aria-pressed="true" title="Konfeti açık; kapat">🎉 Konfeti</button>
+          <button class="podium-fullscreen-btn" id="rnrFullscreenBtn" title="Tam Ekran Sunum Modu">⛶ Tam Ekran</button>
+          <button class="podium-mini-reset" id="miniResetBtn" title="Podyumu Başa Al">↺ Sıfırla</button>
+          <div class="week-tag" id="weekBadge">HAFTA -</div>
+        </div>
+      </header>
+
+      <div class="view-utility-bar podium-summary">
+        <div class="period-meta"><p class="period-label" id="weeklyPeriod">Haftalık dönem yükleniyor…</p><p class="publication-label" data-publication="RNR_WEEKLY">Yayın tarihi yükleniyor…</p></div>
+        <div class="ranking-summary-copy">
+          <p class="view-description">Haftanın puanları ve departman ilk üçleri.</p>
+          <span class="ranking-help" data-ranking-help>
+            <button type="button" class="ranking-help-button" aria-label="Haftalık sıralamada beraberlik nasıl hesaplanır?" aria-describedby="rnrRankingHelp">?</button>
+            <span class="ranking-help-tooltip" id="rnrRankingHelp" role="tooltip">Eşit puanlar aynı sırayı paylaşır: örneğin 1, 1, 3. Sıfır puanlı sonuçlar podyuma çıkmaz.</span>
+          </span>
+        </div>
+        <div class="data-status" data-dataset="RNR_WEEKLY"><p role="status" aria-live="polite">Sıralama yükleniyor…</p><button type="button" class="subtle-button" data-retry="RNR_WEEKLY" hidden>Tekrar dene</button></div>
+      </div>
+      </div>
+      <section class="podium-wrapper" id="rnrPodiumWrapper" aria-label="Haftalık podyum">
+        <div class="bg-vectors" id="bgVectors">
+          <svg class="vec-mountains" viewBox="0 0 1440 500" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="khakiDeepGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#4b5c40" stop-opacity="0.38" />
+                <stop offset="60%" stop-color="#141c12" stop-opacity="0.88" />
+                <stop offset="100%" stop-color="#080a0e" stop-opacity="0.98" />
+              </linearGradient>
+              <linearGradient id="khakiMidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#627854" stop-opacity="0.5" />
+                <stop offset="40%" stop-color="#1b2418" stop-opacity="0.75" />
+                <stop offset="100%" stop-color="#080a0e" stop-opacity="0.99" />
+              </linearGradient>
+              <linearGradient id="khakiFrontGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#a4bd93" stop-opacity="0.65" />
+                <stop offset="25%" stop-color="#7c946b" stop-opacity="0.45" />
+                <stop offset="100%" stop-color="#080a0e" stop-opacity="1" />
+              </linearGradient>
+              <filter id="khakiGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <path d="M0 500 L0 260 L140 160 L320 280 L520 90 L720 240 L940 70 L1140 230 L1320 120 L1440 210 L1440 500 Z" fill="url(#khakiDeepGrad)"/>
+            <path d="M0 500 L0 320 L180 200 L380 340 L560 140 L760 300 L980 120 L1180 280 L1360 170 L1440 240 L1440 500 Z" fill="url(#khakiMidGrad)"/>
+            <path d="M0 500 L0 380 L160 270 L340 400 L540 190 L720 340 L920 160 L1100 330 L1280 210 L1440 330 L1440 500 Z" fill="url(#khakiFrontGrad)"/>
+            <polyline points="0,260 140,160 320,280 520,90 720,240 940,70 1140,230 1320,120 1440,210" fill="none" stroke="#7c946b" stroke-width="2" stroke-opacity="0.55" filter="url(#khakiGlow)"/>
+            <polyline points="0,380 160,270 340,400 540,190 720,340 920,160 1100,330 1280,210 1440,330" fill="none" stroke="#a4bd93" stroke-width="2.5" stroke-opacity="0.85" filter="url(#khakiGlow)"/>
+          </svg>
+        </div>
+
+        <div class="stage" id="stageContainer">
+          <div class="pedestal-group pedestal-2">
+            <div class="user-card" id="card2">
+              <div class="avatar-box">🥈</div>
+              <div class="name" id="name2">-</div>
+              <div class="dept" id="dept2">-</div>
+              <div class="points" id="points2">-</div>
+            </div>
+            <div class="pillar" id="pillar2">2</div>
+          </div>
+
+          <div class="pedestal-group pedestal-1">
+            <div class="user-card" id="card1">
+              <div class="avatar-box">👑</div>
+              <div class="name" id="name1">-</div>
+              <div class="dept" id="dept1">-</div>
+              <div class="points" id="points1">-</div>
+            </div>
+            <div class="pillar" id="pillar1">1</div>
+          </div>
+
+          <div class="pedestal-group pedestal-3">
+            <div class="user-card" id="card3">
+              <div class="avatar-box">🥉</div>
+              <div class="name" id="name3">-</div>
+              <div class="dept" id="dept3">-</div>
+              <div class="points" id="points3">-</div>
+            </div>
+            <div class="pillar" id="pillar3">3</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="reveal-btn" id="actionBtn" disabled>KAZANANLARI AÇ (3. SIRA)</button>
+        </div>
+      </section>
+
+      <div class="data-sections-container">
+        <div class="table-wrapper general-leaderboard-wide">
+          <div class="panel-header">
+            <div class="panel-header-left">
+              <h2 class="panel-title">HAFTALIK SIRALAMA</h2>
+              <span class="panel-subtitle">LC DENİZLİ TOP 10 PERFORMANSI</span>
+            </div>
+            <span class="panel-badge" id="tableWeekBadge">HAFTA -</span>
+          </div>
+          <div class="table-scroll-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="th-rank">#</th>
+                  <th class="th-name">AD - SOYAD</th>
+                  <th class="th-dept">DEPARTMAN</th>
+                  <th class="th-points">PUAN</th>
+                </tr>
+              </thead>
+              <tbody id="generalTableBody"><tr><td colspan="4" class="status-cell">Yükleniyor...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="departments-grid" id="departmentsGrid"></div>
+      </div>
+    </section>
+
+    <!-- 3. GÖRÜNÜM: ALLTIME (AYLIK PODYUM VE GENEL TABLO) -->
+    <section id="view-alltime" class="page-view">
+      <div class="podium-intro">
+      <header class="top-bar">
+        <div class="top-bar-title">
+          <span class="trophy-icon">👑</span> AYIN ZİRVESİ
+          <span class="sub-header-tag">AYLIK ŞAMPİYONLAR KÜRSÜSÜ</span>
+        </div>
+        <div class="top-bar-right-group">
+          <button class="podium-mini-reset confetti-toggle" id="alltimeConfettiBtn" type="button" aria-label="Konfeti açık; kapat" aria-pressed="true" title="Konfeti açık; kapat">🎉 Konfeti</button>
+          <button class="podium-fullscreen-btn" id="alltimeFullscreenBtn" title="Tam Ekran Sunum Modu">⛶ Tam Ekran</button>
+          <button class="podium-mini-reset" id="alltimeResetBtn" title="Ay Podyumunu Sıfırla">↺ Sıfırla</button>
+          <div class="week-tag" id="alltimeMonthBadge">ŞUBAT</div>
+        </div>
+      </header>
+
+      <div class="view-utility-bar podium-summary">
+        <div class="period-meta"><p class="period-label" id="monthlyPeriod">Aylık dönem yükleniyor…</p><p class="publication-label" data-publication="ALLTIME">Yayın tarihi yükleniyor…</p></div>
+        <div class="ranking-summary-copy">
+          <p class="view-description">Dönemi ve ayı seç; aşağıdaki aramada adını ve rozetlerini bul.</p>
+          <span class="ranking-help" data-ranking-help>
+            <button type="button" class="ranking-help-button" aria-label="Aylık sıralamada beraberlik nasıl hesaplanır?" aria-describedby="alltimeRankingHelp">?</button>
+            <span class="ranking-help-tooltip" id="alltimeRankingHelp" role="tooltip">Eşit puanlar aynı sırayı paylaşır: örneğin 1, 1, 3. Sıfır puanlı sonuçlar podyuma çıkmaz.</span>
+          </span>
+        </div>
+        <div class="data-status" data-dataset="ALLTIME"><p role="status" aria-live="polite">Sıralama yükleniyor…</p><button type="button" class="subtle-button" data-retry="ALLTIME" hidden>Tekrar dene</button></div>
+      </div>
+      </div>
+      <section class="podium-wrapper" id="alltimePodiumWrapper" aria-label="Aylık podyum">
+        <div class="bg-vectors" id="alltimeBgVectors">
+          <svg class="vec-mountains" viewBox="0 0 1440 500" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="alltimeDeepGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#b89635" stop-opacity="0.38" />
+                <stop offset="60%" stop-color="#1c160c" stop-opacity="0.88" />
+                <stop offset="100%" stop-color="#080a0e" stop-opacity="0.98" />
+              </linearGradient>
+              <linearGradient id="alltimeMidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#e2b16a" stop-opacity="0.52" />
+                <stop offset="40%" stop-color="#241c0e" stop-opacity="0.75" />
+                <stop offset="100%" stop-color="#080a0e" stop-opacity="0.99" />
+              </linearGradient>
+              <linearGradient id="alltimeFrontGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffecb3" stop-opacity="0.65" />
+                <stop offset="25%" stop-color="#ffc845" stop-opacity="0.45" />
+                <stop offset="100%" stop-color="#080a0e" stop-opacity="1" />
+              </linearGradient>
+              <filter id="alltimeNeonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <path d="M0 500 L0 270 L160 150 L340 270 L540 80 L740 230 L950 60 L1150 220 L1330 110 L1440 200 L1440 500 Z" fill="url(#alltimeDeepGrad)"/>
+            <path d="M0 500 L0 330 L190 210 L390 350 L580 130 L780 290 L990 110 L1190 270 L1370 160 L1440 230 L1440 500 Z" fill="url(#alltimeMidGrad)"/>
+            <path d="M0 500 L0 390 L170 280 L350 410 L550 180 L730 330 L930 150 L1110 320 L1290 200 L1440 320 L1440 500 Z" fill="url(#alltimeFrontGrad)"/>
+            <polyline points="0,270 160,150 340,270 540,80 740,230 950,60 1150,220 1330,110 1440,200" fill="none" stroke="#e2b16a" stroke-width="2" stroke-opacity="0.55" filter="url(#alltimeNeonGlow)"/>
+            <polyline points="0,390 170,280 350,410 550,180 730,330 930,150 1110,320 1290,200 1440,320" fill="none" stroke="#ffc845" stroke-width="2.5" stroke-opacity="0.85" filter="url(#alltimeNeonGlow)"/>
+          </svg>
+        </div>
+
+        <div class="stage" id="alltimeStageContainer">
+          <div class="pedestal-group pedestal-2">
+            <div class="user-card" id="alltimeCard2"><div class="avatar-box">🥈</div><div class="name" id="alltimeName2">-</div><div class="dept" id="alltimeDept2">-</div><div class="points" id="alltimePoints2">-</div></div>
+            <div class="pillar" id="alltimePillar2">2</div>
+          </div>
+          <div class="pedestal-group pedestal-1">
+            <div class="user-card" id="alltimeCard1"><div class="avatar-box">👑</div><div class="name" id="alltimeName1">-</div><div class="dept" id="alltimeDept1">-</div><div class="points" id="alltimePoints1">-</div></div>
+            <div class="pillar" id="alltimePillar1">1</div>
+          </div>
+          <div class="pedestal-group pedestal-3">
+            <div class="user-card" id="alltimeCard3"><div class="avatar-box">🥉</div><div class="name" id="alltimeName3">-</div><div class="dept" id="alltimeDept3">-</div><div class="points" id="alltimePoints3">-</div></div>
+            <div class="pillar" id="alltimePillar3">3</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="reveal-btn" id="alltimeActionBtn">AYIN KAZANANLARINI AÇ (3. SIRA)</button>
+        </div>
+      </section>
+
+      <!-- 5. GÖREV: SÜTUN ORANLARI KİLİTLİ AYLIK GENEL SIRALAMA TABLOSU -->
+      <div class="table-wrapper general-leaderboard-wide">
+        <div class="panel-header">
+          <div class="panel-header-left">
+            <h2 class="panel-title">AYLIK GENEL SIRALAMA</h2>
+            <span class="panel-subtitle">AY BOYU EN YÜKSEK TOPLANAN PUANLAR</span>
+          </div>
+          <span class="panel-badge" id="alltimeTableMonthBadge">ŞUBAT TOP 10</span>
+        </div>
+        <div class="table-scroll-container">
+          <table class="data-table" id="alltimeDataTable">
+            <thead>
+              <tr>
+                <th class="th-rank">#</th>
+                <th class="th-name">AD - SOYAD</th>
+                <th class="th-dept">DEPARTMAN</th>
+                <th class="th-badges">KAZANILAN ROZETLER</th>
+                <th class="th-points" id="alltimePointsHeader">PUAN</th>
+              </tr>
+            </thead>
+            <tbody id="cumulativeTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2. VE 3. GÖREV: İNTERAKTİF 12 AYLIK SEZON ARŞİVİ -->
+      <div class="archive-section">
+        <div class="flow-header">
+          <h3 class="flow-heading">12 AYLIK SEZON ARŞİVİ</h3>
+          <div class="season-heading-row">
+            <span class="flow-subheading" id="seasonArchiveHeading">DÖNEMSEL İLK 3 KÜRSÜLERİ</span>
+            <label class="season-picker" for="seasonSelect">
+              <span class="sr-only">AllTime dönemi seç</span>
+              <select id="seasonSelect" aria-describedby="seasonCatalogStatus"></select>
+              <span class="season-arrow" aria-hidden="true">▾</span>
+            </label>
+          </div>
+        </div>
+        <div class="season-catalog-feedback"><span id="seasonCatalogStatus" role="status" aria-live="polite"></span><button id="retrySeasonCatalog" class="subtle-button" type="button" hidden>Dönemleri tekrar yükle</button></div>
+        <div class="months-archive-grid" id="monthsArchiveGrid"></div>
+      </div>
+
+      <div class="badges-directory-section" id="memberDirectory">
+        <div class="flow-header">
+          <h3 class="flow-heading">ROZET SÖZLÜĞÜ & BAŞARI MÜZESİ</h3>
+          <span class="flow-subheading">ŞUBE ÜYE ROZET DAĞILIMI</span>
+        </div>
+
+        <div class="badge-legend-bar">
+          <div class="legend-pill"><span class="legend-icon">👑</span><div class="legend-text"><strong>Haftalık genel</strong><small>İlk 3 derecesi</small></div></div>
+          <div class="legend-pill"><span class="legend-icon">🥇</span><div class="legend-text"><strong>Haftalık departman</strong><small>İlk 3 derecesi</small></div></div>
+          <div class="legend-pill"><span class="legend-icon">🏆</span><div class="legend-text"><strong>Aylık genel</strong><small>İlk 3 derecesi</small></div></div>
+          <div class="legend-pill"><span class="legend-icon">⭐</span><div class="legend-text"><strong>Kota başarımı</strong><small>Haftada 500 üzeri puan</small></div></div>
+          <div class="legend-pill"><span class="legend-icon">🔥</span><div class="legend-text"><strong>Aktif seri</strong><small>3+ hafta, her hafta 300 üzeri</small></div></div>
+        </div>
+        <p class="roster-scope" id="memberRosterScope"></p>
+
+        <div class="member-filter-dock">
+          <input type="search" id="memberSearchInput" class="member-search-box" aria-label="Üye adıyla ara" placeholder="Üye adı ile anlık ara...">
+          <div class="dept-filter-group" id="deptFilterGroup" role="group" aria-label="Üye departmanı filtresi">
+            <button class="dept-chip active" data-dept="all">Tümü</button>
+            <button class="dept-chip" data-dept="bda">BDa</button>
+            <button class="dept-chip" data-dept="bde">BDe</button>
+            <button class="dept-chip" data-dept="igt">iGT</button>
+            <button class="dept-chip" data-dept="igv">iGV</button>
+            <button class="dept-chip" data-dept="mkt">MKT</button>
+            <button class="dept-chip" data-dept="ogx">oGX</button>
+            <button class="dept-chip" data-dept="ocvp">OCVP</button>
+          </div>
+          <button class="subtle-button" id="clearMemberFilters" type="button" disabled>Filtreleri temizle</button>
+        </div>
+        <p class="member-result-count" id="memberResultCount" role="status" aria-live="polite">Kişiler yükleniyor…</p>
+        <p class="search-empty" id="memberSearchEmpty" hidden>Bu arama ve filtreyle eşleşen kişi bulunamadı. Farklı bir isim deneyebilir veya filtreleri temizleyebilirsin.</p>
+
+        <div class="members-roster-container">
+          <div class="roster-header">
+            <span>ÜYE BİLGİSİ</span>
+            <span>DEPARTMAN</span>
+            <span style="text-align: right;">KAZANILAN BAŞARILAR / ROZETLER</span>
+          </div>
+          <div class="roster-list" id="membersRosterList"></div>
+        </div>
+      </div>
+
+      <!-- ALLTIME SEAMLESS VİTRİN AKIŞI -->
+      <div class="alltime-seamless-showcase">
+        <div class="showcase-photo-column">
+          <div class="photo-slot showcase-photo-slot" data-slot="[FOTO-14]">
+            <div class="slot-badge">[FOTO-14] Dönem Şampiyonları Kürsüsü</div>
+          </div>
+        </div>
+        <div class="showcase-text-column">
+          <div class="leader-meta-row">
+            <span class="slot-text-badge">DÖNEMLİK ŞAMPİYONLAR KULÜBÜ</span>
+            <span class="slot-text-badge muted">AIESEC DENİZLİ HALL OF FAME</span>
+          </div>
+          <h3 class="slot-lead-name">Zirvede Kalanların Mirası</h3>
+          <div class="text-placeholder-box">
+            <span class="text-slot-line highlight">Şubat 2026 itibarıyla atılan her adımı, gerçekleştirilen her liderlik deneyimini tek tek arşivliyoruz.</span>
+            <span class="text-slot-line">Bireysel ve departman bazında toplanan puanlar yalnızca haftalık kürsüyü değil, dönem sonunda verilecek şube ödüllerinin de kaderini belirler.</span>
+            <span class="text-slot-line short">Tutkuyla çalış, zirveye adını altın harflerle yazdır.</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 4. GÖRÜNÜM: NTT (KÜRESEL ŞUBE LİGİ & DEPARTMAN TABLOLARI) -->
+    <section id="view-ntt" class="page-view">
+      <div class="ntt-intro-flow">
+        <div class="ntt-photo-column">
+          <div class="photo-slot ntt-photo-slot" data-slot="[FOTO-13]">
+            <div class="slot-badge">[FOTO-13]</div>
+          </div>
+        </div>
+
+        <div class="ntt-text-column">
+          <div class="leader-meta-row">
+            <span class="slot-text-badge">[YAZI-62]</span>
+          </div>
+          <h2 class="slot-lead-name">[YAZI-63]</h2>
+          
+          <div class="text-placeholder-box">
+            <span class="text-slot-line highlight">[YAZI-64]</span>
+            <span class="text-slot-line">[YAZI-65]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KÜRESEL ŞUBE LİGİ KONTROL ÇUBUĞU (3 FİLTRE BUTONU) -->
+      <p class="view-description">NTT, şube performanslarını karşılaştırır. Approved: onaylanan, Realized: başlayan, Completed: tamamlanan süreçler.</p>
+      <div class="view-utility-bar">
+        <p class="publication-label" data-publication="NTT_GLOBAL">Küresel yayın tarihi yükleniyor…</p>
+        <div class="data-status" data-dataset="NTT_GLOBAL"><p role="status" aria-live="polite">Küresel sıralama yükleniyor…</p><button type="button" class="subtle-button" data-retry="NTT_GLOBAL" hidden>Küresel veriyi tekrar dene</button></div>
+      </div>
+      <div class="ntt-controls-bar">
+        <div class="flow-header">
+          <h3 class="flow-heading">KÜRESEL ŞUBE LİGİ</h3>
+          <span class="flow-subheading">TOP 25 GLOBAL STANDING</span>
+        </div>
+
+        <div class="ntt-tabs-group" id="nttTabsGroup" role="group" aria-label="Küresel şube ligi aşaması">
+          <button class="ntt-tab-btn active" data-category="approved">APPROVED</button>
+          <button class="ntt-tab-btn" data-category="realized">REALIZED</button>
+          <button class="ntt-tab-btn" data-category="completed">COMPLETED</button>
+        </div>
+      </div>
+
+      <!-- 8 ADET KÜRESEL TABLO KARTI -->
+      <div class="ntt-cards-grid" id="nttCardsGrid"></div>
+
+      <!-- SADE MAT AYRAÇ -->
+      <hr class="matte-divider" />
+
+      <!-- DEPARTMAN BAZLI TÜRKİYE OPERASYONEL DÖNÜŞÜM LİGİ -->
+      <div class="view-utility-bar">
+        <p class="publication-label" data-publication="NTT_NATIONAL">Türkiye yayın tarihi yükleniyor…</p>
+        <div class="data-status" data-dataset="NTT_NATIONAL"><p role="status" aria-live="polite">Türkiye tabloları yükleniyor…</p><button type="button" class="subtle-button" data-retry="NTT_NATIONAL" hidden>Türkiye verisini tekrar dene</button></div>
+      </div>
+      <div class="ntt-funnel-explorer">
+        <!-- DİKEY FİLTRE VE NAVİGASYON DOCK'I -->
+        <aside class="ntt-sticky-filter" id="nttStickyFilter">
+          <span class="filter-dock-title">DEPARTMAN FİLTRESİ</span>
+          <nav class="filter-pills-vertical" id="nttDeptPills" aria-label="Departman tablolarına git">
+            <button class="filter-pill active" data-dept-target="dept-igv" style="--pill-color: #F85A40;">
+              <span class="pill-dot"></span> iGV
+            </button>
+            <button class="filter-pill" data-dept-target="dept-igta" style="--pill-color: #0CB9C1;">
+              <span class="pill-dot"></span> iGTa
+            </button>
+            <button class="filter-pill" data-dept-target="dept-igte" style="--pill-color: #F48924;">
+              <span class="pill-dot"></span> iGTe
+            </button>
+            <button class="filter-pill" data-dept-target="dept-ogv" style="--pill-color: #F85A40;">
+              <span class="pill-dot"></span> oGV
+            </button>
+            <button class="filter-pill" data-dept-target="dept-ogta" style="--pill-color: #EC4899;">
+              <span class="pill-dot"></span> oGTa
+            </button>
+            <button class="filter-pill" data-dept-target="dept-ogte" style="--pill-color: #8B5CF6;">
+              <span class="pill-dot"></span> oGTe
+            </button>
+            <button class="filter-pill" data-dept-target="dept-b2b" style="--pill-color: #10B981;">
+              <span class="pill-dot"></span> B2B
+            </button>
+            <button class="filter-pill" data-dept-target="dept-mkt" style="--pill-color: #ffc845;">
+              <span class="pill-dot"></span> MKT
+            </button>
+          </nav>
+        </aside>
+
+        <!-- DEPARTMAN SAHNELERİ -->
+        <div class="ntt-departments-container" id="nttDeptsContainer">
+
+          <!-- 1. DEPARTMAN: iGV -->
+          <div class="dept-stage-block" id="dept-igv" data-ambient="#F85A40">
+            <div class="dept-stage-header" style="--stage-color: #F85A40;">
+              <div class="stage-tag">DEPARTMAN</div>
+              <h3 class="stage-title">iGV</h3>
+            </div>
+            <div class="funnel-six-grid" id="grid-igv"></div>
+          </div>
+
+          <!-- 2. DEPARTMAN: iGTa -->
+          <div class="dept-stage-block" id="dept-igta" data-ambient="#0CB9C1">
+            <div class="dept-stage-header" style="--stage-color: #0CB9C1;">
+              <div class="stage-tag">DEPARTMAN</div>
+              <h3 class="stage-title">iGTa</h3>
+            </div>
+            <div class="funnel-six-grid" id="grid-igta"></div>
+          </div>
+
+          <!-- 3. DEPARTMAN: iGTe -->
+          <div class="dept-stage-block" id="dept-igte" data-ambient="#F48924">
+            <div class="dept-stage-header" style="--stage-color: #F48924;">
+              <div class="stage-tag">DEPARTMAN</div>
+              <h3 class="stage-title">iGTe</h3>
+            </div>
+            <div class="funnel-six-grid" id="grid-igte"></div>
+          </div>
+
+          <!-- 4. DEPARTMAN: oGV -->
+          <div class="dept-stage-block" id="dept-ogv" data-ambient="#F85A40">
+            <div class="dept-stage-header" style="--stage-color: #F85A40;">
+              <div class="stage-tag">DEPARTMAN</div>
+              <h3 class="stage-title">oGV</h3>
+            </div>
+            <div class="funnel-six-grid" id="grid-ogv"></div>
+          </div>
+
+          <!-- 5. DEPARTMAN: oGTa -->
+          <div class="dept-stage-block" id="dept-ogta" data-ambient="#EC4899">
+            <div class="dept-stage-header" style="--stage-color: #EC4899;">
+              <div class="stage-tag">DEPARTMAN</div>
+              <h3 class="stage-title">oGTa</h3>
+            </div>
+            <div class="funnel-six-grid" id="grid-ogta"></div>
+          </div>
+
+          <!-- 6. DEPARTMAN: oGTe -->
+          <div class="dept-stage-block" id="dept-ogte" data-ambient="#8B5CF6">
+            <div class="dept-stage-header" style="--stage-color: #8B5CF6;">
+              <div class="stage-tag">DEPARTMAN</div>
+              <h3 class="stage-title">oGTe</h3>
+            </div>
+            <div class="funnel-six-grid" id="grid-ogte"></div>
+          </div>
+
+          <!-- 7. DEPARTMAN: B2B -->
+          <div class="dept-stage-block" id="dept-b2b" data-ambient="#10B981">
+            <div class="dept-stage-header" style="--stage-color: #10B981;">
+              <div class="stage-tag">DEPARTMAN</div>
+              <h3 class="stage-title">B2B</h3>
+            </div>
+
+            <div class="b2b-tier-section">
+              <div class="b2b-tier-title">B2B TOTAL RANKINGS</div>
+              <div class="b2b-three-grid" id="grid-b2b-total"></div>
+            </div>
+
+            <div class="b2b-tier-section">
+              <div class="b2b-tier-title">GTa RANKINGS</div>
+              <div class="b2b-three-grid" id="grid-b2b-gta"></div>
+            </div>
+
+            <div class="b2b-tier-section">
+              <div class="b2b-tier-title">GTe RANKINGS</div>
+              <div class="b2b-three-grid" id="grid-b2b-gte"></div>
+            </div>
+
+            <div class="b2b-tier-section">
+              <div class="b2b-tier-title">EwA RANKINGS (TOP OF THE INCOME)</div>
+              <div class="b2b-ewa-container" id="grid-b2b-ewa"></div>
+            </div>
+          </div>
+
+          <!-- 8. DEPARTMAN: MKT -->
+          <div class="dept-stage-block" id="dept-mkt" data-ambient="#ffc845">
+            <div class="dept-stage-header" style="--stage-color: #ffc845;">
+              <div class="stage-tag">DEPARTMAN</div>
+              <h3 class="stage-title">MKT</h3>
+            </div>
+            <div class="mkt-four-grid" id="grid-mkt"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. GÖRÜNÜM: DENİZLİ -->
+    <section id="view-denizli" class="page-view">
+      <header class="denizli-hero">
+        <div class="denizli-hero-copy">
+          <p class="denizli-eyebrow"><span class="denizli-text-ref">[062]</span> AIESEC DENİZLİ / BİZİM HİKÂYEMİZ</p>
+          <h1><span class="denizli-text-ref">[063]</span> Denizli’de başlayan<br><span>liderlik yolculuğu.</span></h1>
+          <p class="denizli-intro"><span class="denizli-text-ref">[064]</span> Bir ekipte yer almak, sorumluluk üstlenmek, birlikte öğrenmek. Bu sayfa, AIESEC Denizli’yi üyelerinin deneyimleriyle anlatıyor.</p>
+          <nav class="denizli-section-nav" aria-label="Denizli sayfası bölümleri">
+            <button type="button" data-denizli-section="denizli-story">Şube hikâyemiz <span aria-hidden="true">↗</span></button>
+            <button type="button" data-denizli-section="denizli-experiences">Üyelik deneyimi <span aria-hidden="true">↗</span></button>
+            <button type="button" data-denizli-section="denizli-legacy">Geçmişten sesler <span aria-hidden="true">↗</span></button>
+          </nav>
+        </div>
+        <figure class="denizli-hero-figure">
+          <div class="denizli-photo denizli-photo-cover"><span class="denizli-photo-id">FOTO-15</span><span>Ekip fotoğrafı</span><small>Birlikte olduğumuz bir an</small></div>
+          <figcaption><span class="denizli-text-ref">[065]</span> AIESEC Denizli <span><span class="denizli-text-ref">[066]</span> [Dönem / ekip adı]</span></figcaption>
+        </figure>
+      </header>
+
+      <section class="denizli-section" id="denizli-story" aria-labelledby="denizliStoryTitle" tabindex="-1">
+        <div class="denizli-section-heading"><p class="denizli-eyebrow"><span class="denizli-text-ref">[067]</span> 01 / ŞUBE HİKÂYEMİZ</p><h2 id="denizliStoryTitle"><span class="denizli-text-ref">[068]</span> Bir şehir. Bir ekip.<br>Birlikte yazılan bir hikâye.</h2></div>
+        <div class="denizli-story-grid">
+          <div class="denizli-story-copy"><p class="denizli-placeholder-text"><span class="denizli-text-ref">[069]</span> [AIESEC Denizli’nin nasıl başladığını ve bugün nasıl bir ekip olduğunu anlatan kısa şube hikâyesi.]</p><p class="denizli-placeholder-text"><span class="denizli-text-ref">[070]</span> [Ekibin değerleri, Denizli’deki yeri ve üyelerin birlikte oluşturduğu kültür. 3–4 cümle.]</p></div>
+          <ol class="denizli-timeline">
+            <li><span><span class="denizli-text-ref">[071]</span> [Kuruluş yılı]</span><h3><span class="denizli-text-ref">[072]</span> İlk adım</h3><p><span class="denizli-text-ref">[073]</span> [Şubenin kuruluşundan bir anı.]</p></li>
+            <li><span><span class="denizli-text-ref">[074]</span> [Yıl / dönem]</span><h3><span class="denizli-text-ref">[075]</span> Birlikte büyümek</h3><p><span class="denizli-text-ref">[076]</span> [Şube için önemli bir proje veya dönüm noktası.]</p></li>
+            <li><span><span class="denizli-text-ref">[077]</span> [Güncel dönem]</span><h3><span class="denizli-text-ref">[078]</span> Bugünün ekibi</h3><p><span class="denizli-text-ref">[079]</span> [Bugünkü ekibi ve ortak hedefini anlatan kısa metin.]</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="denizli-section" id="denizli-experiences" aria-labelledby="denizliExperienceTitle" tabindex="-1">
+        <div class="denizli-section-heading"><p class="denizli-eyebrow"><span class="denizli-text-ref">[080]</span> 02 / AIESEC’TE ÜYELİK</p><h2 id="denizliExperienceTitle"><span class="denizli-text-ref">[081]</span> Bir unvandan fazlası.<br>Yaşayarak öğrenmek.</h2><p><span class="denizli-text-ref">[082]</span> İlk toplantıdan ilk sorumluluğa; üyelik deneyiminin farklı anları, ekip arkadaşlarımızın gözünden.</p></div>
+        <div class="denizli-experience-grid">
+          <article class="denizli-experience-card"><div class="denizli-photo"><span class="denizli-photo-id">FOTO-16</span><span>Üye / ekip çalışması</span></div><div class="denizli-card-copy"><p class="denizli-eyebrow"><span class="denizli-text-ref">[083]</span> EKİBİN PARÇASI OLMAK</p><h3><span class="denizli-text-ref">[084]</span> İlk gün, ilk bağ.</h3><blockquote><span class="denizli-text-ref">[085]</span> [Bir üyenin ilk gününü, ekibe alışmasını ve kurduğu bağları anlattığı gerçek sözleri.]</blockquote><p class="denizli-byline"><span class="denizli-text-ref">[086]</span> [Üye adı] <span><span class="denizli-text-ref">[087]</span> [Departman · Dönem]</span></p></div></article>
+          <article class="denizli-experience-card"><div class="denizli-photo"><span class="denizli-photo-id">FOTO-17</span><span>Proje / çalışma anı</span></div><div class="denizli-card-copy"><p class="denizli-eyebrow"><span class="denizli-text-ref">[088]</span> SORUMLULUK ALMAK</p><h3><span class="denizli-text-ref">[089]</span> “Bunu ben yapabilirim.”</h3><blockquote><span class="denizli-text-ref">[090]</span> [Bir üyenin üstlendiği ilk sorumluluğu ve öğrendiklerini anlattığı gerçek sözleri.]</blockquote><p class="denizli-byline"><span class="denizli-text-ref">[091]</span> [Üye adı] <span><span class="denizli-text-ref">[092]</span> [Görev · Dönem]</span></p></div></article>
+          <article class="denizli-experience-card"><div class="denizli-photo"><span class="denizli-photo-id">FOTO-18</span><span>Ekip / etkinlik anısı</span></div><div class="denizli-card-copy"><p class="denizli-eyebrow"><span class="denizli-text-ref">[093]</span> BİRLİKTE GELİŞMEK</p><h3><span class="denizli-text-ref">[094]</span> Yan yana, bir adım ileri.</h3><blockquote><span class="denizli-text-ref">[095]</span> [Bir üyenin ekipten öğrendiklerini ve kendindeki değişimi anlattığı gerçek sözleri.]</blockquote><p class="denizli-byline"><span class="denizli-text-ref">[096]</span> [Üye adı] <span><span class="denizli-text-ref">[097]</span> [Departman · Dönem]</span></p></div></article>
+        </div>
+        <div class="denizli-memory"><div class="denizli-photo"><span class="denizli-photo-id">FOTO-19</span><span>Unutulmayan bir ekip anı</span></div><div><p class="denizli-eyebrow"><span class="denizli-text-ref">[098]</span> BİZDEN BİR AN</p><h3><span class="denizli-text-ref">[099]</span> [Etkinlik / buluşma adı]</h3><p class="denizli-placeholder-text"><span class="denizli-text-ref">[100]</span> [Ne yaşadık, birlikte ne yaptık, neden aklımızda kaldı? 2–3 cümlelik gerçek bir ekip anısı.]</p><span class="denizli-meta"><span class="denizli-text-ref">[101]</span> [Tarih · Yer]</span></div></div>
+      </section>
+
+      <section class="denizli-section" id="denizli-legacy" aria-labelledby="denizliLegacyTitle" tabindex="-1">
+        <div class="denizli-section-heading"><p class="denizli-eyebrow"><span class="denizli-text-ref">[102]</span> 03 / GEÇMİŞTEN SESLER</p><h2 id="denizliLegacyTitle"><span class="denizli-text-ref">[103]</span> İz bırakanlar.<br>Hikâyeyi ileri taşıyanlar.</h2><p><span class="denizli-text-ref">[104]</span> AIESEC Denizli’nin geçmiş dönem başkanları ve yönetim kurullarından fotoğraflar, anılar ve sözler.</p></div>
+        <h3 class="denizli-group-title"><span class="denizli-text-ref">[105]</span> Geçmiş dönem başkanları</h3>
+        <div class="denizli-president-grid">
+          <article class="denizli-president"><div class="denizli-photo denizli-photo-portrait"><span class="denizli-photo-id">FOTO-20</span><span>Başkan portresi</span></div><div class="denizli-quote-copy"><span class="denizli-meta"><span class="denizli-text-ref">[106]</span> [Dönem] / ŞUBE BAŞKANI</span><h4><span class="denizli-text-ref">[107]</span> [Ad Soyad]</h4><blockquote><span class="denizli-text-ref">[108]</span> [Başkanın kendi sözleriyle AIESEC Denizli’deki yolculuğu, ekibine bıraktığı mesaj veya unutamadığı bir an.]</blockquote><p class="denizli-placeholder-text"><span class="denizli-text-ref">[109]</span> [Bu dönemin şube hikâyesindeki yeri. 1–2 cümle.]</p></div></article>
+          <article class="denizli-president"><div class="denizli-photo denizli-photo-portrait"><span class="denizli-photo-id">FOTO-21</span><span>Başkan portresi</span></div><div class="denizli-quote-copy"><span class="denizli-meta"><span class="denizli-text-ref">[110]</span> [Dönem] / ŞUBE BAŞKANI</span><h4><span class="denizli-text-ref">[111]</span> [Ad Soyad]</h4><blockquote><span class="denizli-text-ref">[112]</span> [Başkanın kendi sözleriyle liderlik deneyimi ve bugünün üyelerine mesajı.]</blockquote><p class="denizli-placeholder-text"><span class="denizli-text-ref">[113]</span> [Bu dönemin şube hikâyesindeki yeri. 1–2 cümle.]</p></div></article>
+        </div>
+        <h3 class="denizli-group-title"><span class="denizli-text-ref">[114]</span> Geçmiş yönetim kurulları</h3>
+        <div class="denizli-board-grid">
+          <article class="denizli-board"><div class="denizli-photo"><span class="denizli-photo-id">FOTO-22</span><span>Yönetim kurulu ekip fotoğrafı</span></div><div class="denizli-card-copy"><span class="denizli-meta"><span class="denizli-text-ref">[115]</span> [Dönem]</span><h4><span class="denizli-text-ref">[116]</span> [YK / EB adı]</h4><blockquote><span class="denizli-text-ref">[117]</span> [Bu yönetim kurulundan paylaşılacak gerçek bir söz veya ortak mesaj.]</blockquote><p class="denizli-placeholder-text"><span class="denizli-text-ref">[118]</span> [Ekip üyelerinin adları ve görevleri.]</p></div></article>
+          <article class="denizli-board"><div class="denizli-photo"><span class="denizli-photo-id">FOTO-23</span><span>Yönetim kurulu ekip fotoğrafı</span></div><div class="denizli-card-copy"><span class="denizli-meta"><span class="denizli-text-ref">[119]</span> [Dönem]</span><h4><span class="denizli-text-ref">[120]</span> [YK / EB adı]</h4><blockquote><span class="denizli-text-ref">[121]</span> [Bu yönetim kurulunun anısı, birlikte öğrendikleri veya sonraki ekiplere mesajı.]</blockquote><p class="denizli-placeholder-text"><span class="denizli-text-ref">[122]</span> [Ekip üyelerinin adları ve görevleri.]</p></div></article>
+        </div>
+      </section>
+
+      <section class="denizli-section denizli-city-section" aria-labelledby="denizliCityTitle">
+        <div class="denizli-section-heading"><p class="denizli-eyebrow"><span class="denizli-text-ref">[123]</span> 04 / HİKÂYENİN ŞEHRİ</p><h2 id="denizliCityTitle"><span class="denizli-text-ref">[124]</span> Bütün bu anların arkasında,<br>Denizli var.</h2><p><span class="denizli-text-ref">[125]</span> [Şehri üyelerin gözünden anlatan kısa giriş. Bu son bölüm isteğe bağlıdır.]</p></div>
+        <div class="denizli-city-grid">
+          <article><div class="denizli-photo"><span class="denizli-photo-id">FOTO-24</span><span>Pamukkale</span></div><h3><span class="denizli-text-ref">[126]</span> Doğayla yan yana</h3><p><span class="denizli-text-ref">[127]</span> [Pamukkale ve çevresinden üyelerin bir anısı.]</p></article>
+          <article><div class="denizli-photo"><span class="denizli-photo-id">FOTO-25</span><span>Hierapolis / Laodikeia</span></div><h3><span class="denizli-text-ref">[128]</span> Geçmişin izinde</h3><p><span class="denizli-text-ref">[129]</span> [Şehrin tarihiyle kurulan bağı anlatan kısa metin.]</p></article>
+          <article><div class="denizli-photo"><span class="denizli-photo-id">FOTO-26</span><span>Kampüs / şehir yaşamı</span></div><h3><span class="denizli-text-ref">[130]</span> Bizim Denizli’miz</h3><p><span class="denizli-text-ref">[131]</span> [Öğrencilik, kampüs ve birlikte geçirilen zamanlar.]</p></article>
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- GLOBAL ALT PANEL (FOOTER) -->
+  <footer class="global-bottom-bar">
+    <div class="footer-inner">
+      <section class="footer-contact" aria-labelledby="footerContactTitle">
+        <h2 id="footerContactTitle">Kurum ve iletişim</h2>
+        <p>AIESEC Denizli · AIESEC Türkiye bünyesindeki Denizli şubesi.</p>
+        <dl class="footer-contact-details">
+          <div><dt>Telefon</dt><dd><a href="tel:+902584106320">0258 410 63 20</a></dd></div>
+          <div><dt>E-posta / veri başvuruları</dt><dd><a href="mailto:denizli@aiesec.org.tr">denizli@aiesec.org.tr</a></dd></div>
+          <div><dt>Şube Başkanı</dt><dd>Arda Dilaver</dd></div>
+          <div><dt>Yönetim kurulu süreç irtibatı</dt><dd>İsmail Emre Sağıroğlu</dd></div>
+          <div class="footer-contact-address"><dt>Adres</dt><dd>Kınıklı, 6033. Sk. No:12/2, 20160 Pamukkale, 20160 Denizli Merkezefendi/Denizli</dd></div>
+        </dl>
+      </section>
+      <div class="footer-left-group">
+        <div class="footer-brand"><strong>AIESEC DENİZLİ</strong></div>
+        <span class="footer-hashtag">#nesanlisevgi</span>
+        <p class="footer-publication" id="footerPublication">Son yayın tarihi yükleniyor…</p>
+        <p class="footer-publication" data-pwa-ready>Çevrimdışı kullanım hazırlanıyor…</p>
+        <button type="button" class="pwa-install-button" data-pwa-install hidden>Uygulamayı yükle</button>
+        <p class="map-attribution">Harita: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap katkıda bulunanlar</a></p>
+      </div>
+      <nav class="footer-nav" aria-label="Alt gezinme">
+        <button class="footer-btn" data-target="home">Ana Sayfa</button>
+        <button class="footer-btn" data-target="rnr">RnR</button>
+        <button class="footer-btn" data-target="alltime">AllTime</button>
+        <button class="footer-btn" data-target="ntt">NTT</button>
+        <button class="footer-btn" data-target="denizli">Denizli</button>
+        <a class="footer-legal-link" href="gizlilik.html">Gizlilik ve KVKK</a>
+      </nav>
+      <div class="footer-right-group">
+        <button class="scroll-top-btn" id="scrollTopBtn" title="Sayfanın En Üstüne Çık">
+          <span class="scroll-top-icon">▲</span>
+          <span class="scroll-top-text">Yukarı Çık</span>
+        </button>
+        <div class="footer-credits"><span class="developer-tag">Samet Temiz</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

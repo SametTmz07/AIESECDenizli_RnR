@@ -1,0 +1,207 @@
+/* Shared physical edges: controls depress, while podium/table surfaces stay still. */
+:root {
+  --ui-control-radius: 8px;
+  --ui-control-depth: 5px;
+  --ui-control-bg: #1b2128;
+  --ui-control-hover: #252e37;
+  --ui-control-border: #343d47;
+  --ui-control-edge: #090c10;
+  --ui-primary-ink: #061c10;
+  --ui-primary-edge: #005c2e;
+  --ui-disabled-bg: #20252c;
+  --ui-disabled-ink: #949ba8;
+  --ui-highlight: rgba(255, 255, 255, .1);
+  --ui-press-inset: rgba(0, 0, 0, .15);
+  --ui-control-shadow: rgba(0, 0, 0, .4);
+  --ui-surface-edge: #222a34;
+  --ui-surface-shadow: rgba(0, 0, 0, .32);
+  --ui-accent-tint: rgba(0, 165, 81, .1);
+  --ui-accent-border: rgba(0, 165, 81, .35);
+}
+
+html[data-theme="light"] {
+  --ui-control-bg: #eae4d8;
+  --ui-control-hover: #e4ddce;
+  --ui-control-border: #d0c6b4;
+  --ui-control-edge: #b8ae9b;
+  --ui-primary-ink: #fff;
+  --ui-primary-edge: #004c2b;
+  --ui-disabled-bg: #e3ddd1;
+  --ui-disabled-ink: #696358;
+  --ui-highlight: rgba(255, 255, 255, .5);
+  --ui-press-inset: rgba(65, 52, 30, .12);
+  --ui-control-shadow: rgba(65, 52, 30, .17);
+  --ui-surface-edge: #c6bca9;
+  --ui-surface-shadow: rgba(65, 52, 30, .13);
+  --ui-accent-tint: rgba(0, 124, 71, .08);
+  --ui-accent-border: rgba(0, 124, 71, .3);
+}
+
+/* Explicit theme scope keeps these states above earlier theme overrides. */
+html[data-theme] :is(.theme-toggle, .menu-toggle, .drawer-close, .podium-mini-reset,
+  .podium-fullscreen-btn, .reveal-btn, .dept-chip, .ntt-tab-btn, .filter-pill,
+  .subtle-button, .scroll-top-btn, .footer-btn, .home-shortcut, .denizli-section-nav button) {
+  --ui-button-bg: var(--ui-control-bg);
+  --ui-button-ink: var(--text-main);
+  --ui-button-border: var(--ui-control-border);
+  --ui-button-edge: var(--ui-control-edge);
+  border: 1px solid var(--ui-button-border);
+  border-radius: var(--ui-control-radius);
+  background: var(--ui-button-bg);
+  color: var(--ui-button-ink);
+  box-shadow: 0 var(--ui-control-depth) 0 var(--ui-button-edge),
+    0 calc(var(--ui-control-depth) + 5px) 12px var(--ui-control-shadow),
+    inset 0 1px 0 var(--ui-highlight);
+  transition: transform .12s ease, background .12s ease,
+    border-color .12s ease, box-shadow .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html[data-theme] :is(.reveal-btn, .dept-chip.active, .ntt-tab-btn.active) {
+  --ui-button-bg: var(--brand-primary);
+  --ui-button-ink: var(--ui-primary-ink);
+  --ui-button-border: var(--brand-primary);
+  --ui-button-edge: var(--ui-primary-edge);
+}
+
+html[data-theme] .filter-pill.active {
+  --ui-button-bg: color-mix(in srgb, var(--pill-color) 12%, var(--ui-control-bg));
+  --ui-button-border: var(--pill-ink, var(--pill-color));
+  color: var(--text-main);
+}
+
+html[data-theme] .podium-fullscreen-btn { color: var(--brand-primary); }
+html[data-theme] .menu-toggle { width: 40px; height: 40px; align-items: center; justify-content: center; }
+html[data-theme] .drawer-close { width: 36px; height: 36px; line-height: 1; }
+html[data-theme] .denizli-section-nav button { padding: 10px 14px; }
+html[data-theme] .footer-btn { --ui-control-depth: 2px; padding: 6px 9px; }
+html[data-theme] .home-shortcut { backdrop-filter: none; -webkit-backdrop-filter: none; }
+.footer-nav { flex-wrap: wrap; row-gap: 10px; }
+.denizli-section-nav { gap: 14px 12px; }
+.dept-filter-group { gap: 10px 8px; }
+.filter-pills-vertical { gap: 12px; }
+.ntt-tabs-group { gap: 8px; padding-bottom: 9px; }
+
+@media (hover: hover) {
+  html[data-theme] :is(.theme-toggle, .menu-toggle, .drawer-close, .podium-mini-reset,
+    .podium-fullscreen-btn, .reveal-btn, .dept-chip, .ntt-tab-btn, .filter-pill,
+    .subtle-button, .scroll-top-btn, .footer-btn, .home-shortcut, .denizli-section-nav button):not(:disabled):hover {
+    background: color-mix(in srgb, var(--ui-button-bg) 88%, var(--ui-control-hover));
+    border-color: var(--ui-button-border);
+    color: var(--ui-button-ink);
+    transform: translateY(-1px);
+    box-shadow: 0 calc(var(--ui-control-depth) + 1px) 0 var(--ui-button-edge),
+      0 calc(var(--ui-control-depth) + 6px) 14px var(--ui-control-shadow),
+      inset 0 1px 0 var(--ui-highlight);
+  }
+}
+
+html[data-theme] :is(.theme-toggle, .menu-toggle, .drawer-close, .podium-mini-reset,
+  .podium-fullscreen-btn, .reveal-btn, .dept-chip, .ntt-tab-btn, .filter-pill,
+  .subtle-button, .scroll-top-btn, .footer-btn, .home-shortcut, .denizli-section-nav button):not(:disabled):active {
+  transform: translateY(var(--ui-control-depth));
+  box-shadow: 0 0 0 var(--ui-button-edge), 0 2px 4px var(--ui-control-shadow),
+    inset 0 1px 2px var(--ui-press-inset);
+}
+
+html[data-theme] :is(.podium-mini-reset, .podium-fullscreen-btn, .reveal-btn, .dept-chip,
+  .ntt-tab-btn, .filter-pill, .subtle-button):disabled {
+  background: var(--ui-disabled-bg);
+  border-color: var(--border-subtle);
+  color: var(--ui-disabled-ink);
+  box-shadow: none;
+  transform: none;
+  opacity: .75;
+}
+
+html[data-theme] .ranking-help-button {
+  background: var(--ui-control-bg);
+  box-shadow: 0 2px 0 var(--ui-control-edge), inset 0 1px 0 var(--ui-highlight);
+}
+html[data-theme] .ranking-help-button:active { transform: translateY(2px); box-shadow: none; }
+
+/* One edge and a restrained drop shadow carry the depth across all data panels. */
+html[data-theme] :is(.podium-wrapper, .general-leaderboard-wide, .dept-panel,
+  .members-roster-container, .ntt-card, .funnel-card, .ewa-showcase-card) {
+  background: var(--bg-surface);
+  border-color: var(--border-subtle);
+  box-shadow: 0 6px 0 var(--ui-surface-edge),
+    0 14px 22px var(--ui-surface-shadow), inset 0 1px 0 var(--ui-highlight);
+}
+html[data-theme] :is(.top-bar, .ntt-sticky-filter) {
+  background: var(--bg-surface);
+  box-shadow: 0 4px 0 var(--ui-surface-edge),
+    0 10px 16px var(--ui-surface-shadow), inset 0 1px 0 var(--ui-highlight);
+}
+html[data-theme] :is(.ntt-card, .funnel-card):hover { transform: none; border-color: var(--border-subtle); }
+html[data-theme] :is(.funnel-card, .ewa-showcase-card) { backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+/* Photo frames share the controls' raised edge without acting as buttons. */
+:root {
+  --ui-photo-shadow: 0 var(--ui-control-depth) 0 var(--ui-surface-edge),
+    0 calc(var(--ui-control-depth) + 5px) 16px var(--ui-surface-shadow),
+    inset 0 1px 0 var(--ui-highlight);
+}
+html[data-theme] :is(.hero-cover-container,
+  .photo-slot:not(.hero-photo-slot):not(.ntt-summary-photo-slot), .denizli-photo) {
+  border-radius: var(--ui-control-radius);
+  box-shadow: var(--ui-photo-shadow);
+}
+/* The cover's outer frame casts the shadow; its inner photo stays clipped. */
+html[data-theme] .hero-photo-slot { border-radius: inherit; }
+html[data-theme] .denizli-photo { overflow: hidden; background-color: var(--bg-surface); }
+/* Reserve room inside the clipped NTT card for the photo's edge and shadow. */
+html[data-theme] .ntt-summary-photo-slot {
+  width: calc(100% - 24px);
+  margin: 12px 12px 18px !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--ui-control-radius) !important;
+  box-shadow: var(--ui-photo-shadow) !important;
+  background-color: var(--bg-surface);
+}
+
+html[data-theme] .month-card.clickable {
+  border-radius: var(--ui-control-radius);
+  box-shadow: 0 4px 0 var(--ui-surface-edge), 0 10px 16px var(--ui-surface-shadow),
+    inset 0 1px 0 var(--ui-highlight);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+html[data-theme] .month-card.clickable:hover { transform: translateY(-1px); border-color: var(--ui-accent-border); }
+html[data-theme] .month-card.active-month {
+  background: var(--ui-accent-tint) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: 0 4px 0 var(--ui-primary-edge), 0 10px 16px var(--ui-surface-shadow),
+    inset 0 1px 0 var(--ui-highlight) !important;
+}
+html[data-theme] .month-card.clickable:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 4px var(--ui-surface-shadow),
+    inset 0 1px 2px var(--ui-press-inset) !important;
+}
+
+/* Brand accents; department/product identifiers keep their own colors. */
+.nav-item.active::after { box-shadow: none; }
+html[data-theme] .drawer-item:is(.active, :hover) { background: var(--ui-accent-tint); }
+html[data-theme] .text-slot-line.highlight { border-color: var(--ui-accent-border); }
+html[data-theme] .footer-hashtag { background: var(--ui-accent-tint); border-color: var(--ui-accent-border); }
+html[data-theme] .scroll-top-icon { color: var(--brand-primary); }
+.pill-dot { box-shadow: none; }
+html:not([data-theme="light"]) :is(.col-dept, .denizli-standing-text,
+  .footer-dnz-badge) { color: var(--brand-primary); }
+html:not([data-theme="light"]) .ntt-card-footer.has-denizli { border-top-color: var(--brand-primary); }
+html:not([data-theme="light"]) :is(.ntt-row, .funnel-row).highlight-dnz {
+  background: var(--ui-accent-tint);
+  border-left-color: var(--brand-primary);
+}
+html:not([data-theme="light"]) .funnel-row.highlight-dnz .funnel-col-lc { color: var(--brand-primary) !important; }
+html:not([data-theme="light"]) .ntt-summary-header { background: var(--brand-primary) !important; color: var(--ui-primary-ink); }
+html:not([data-theme="light"]) .ntt-summary-header .ntt-card-title { color: var(--ui-primary-ink) !important; }
+
+/* Fullscreen has no exterior canvas on which to cast a shadow. */
+html[data-theme] .podium-wrapper:fullscreen { box-shadow: none; }
+@media (max-width: 1023px) {
+  .filter-pills-vertical { gap: 10px; padding-bottom: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] :is(button, .month-card.clickable) { transition: none; }
+}

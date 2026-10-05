@@ -1,0 +1,44 @@
+/* Gerçek Denizli yol ağı, içerik önünden geçerken ekrana sabit kalır. */
+body.has-city-map { isolation: isolate; }
+body.has-city-map::before,
+html[data-theme="light"] body.has-city-map::before { background-image: none; }
+body.has-city-map .app-container { position: relative; z-index: 1; }
+.city-map-background {
+  --map-ink: var(--brand-primary);
+  position: fixed;
+  inset: 64px 0 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  opacity: .32;
+  /* Yanlarda belirgin, okunacak orta bölgede daha sakin. */
+  -webkit-mask-image: linear-gradient(90deg, #000, rgba(0,0,0,.7) 25%, rgba(0,0,0,.25) 47%, rgba(0,0,0,.25) 53%, rgba(0,0,0,.7) 75%, #000);
+  mask-image: linear-gradient(90deg, #000, rgba(0,0,0,.7) 25%, rgba(0,0,0,.25) 47%, rgba(0,0,0,.25) 53%, rgba(0,0,0,.7) 75%, #000);
+}
+.city-map-background[hidden] { display: none; }
+.city-map-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--map-ink);
+  -webkit-mask: url('../assets/maps/denizli-roads.svg') center / cover no-repeat;
+  mask: url('../assets/maps/denizli-roads.svg') center / cover no-repeat;
+}
+html[data-theme="light"] .city-map-background { --map-ink: #506f68; opacity: .3; }
+.map-attribution { margin: 0; font-size: .72rem; line-height: 1.6; color: var(--text-muted); }
+.footer-left-group { flex-wrap: wrap; }
+.map-attribution a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 768px) {
+  .city-map-background {
+    opacity: .28;
+    -webkit-mask-image: linear-gradient(90deg, #000, rgba(0,0,0,.38) 50%, #000);
+    mask-image: linear-gradient(90deg, #000, rgba(0,0,0,.38) 50%, #000);
+  }
+  .city-map-background::before {
+    /* Dikey ekranda da yollar yeterince büyük ve görünür kalır. */
+    -webkit-mask-size: auto 115%;
+    mask-size: auto 115%;
+  }
+  html[data-theme="light"] .city-map-background { opacity: .28; }
+}

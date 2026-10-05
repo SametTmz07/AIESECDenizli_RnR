@@ -1,0 +1,67 @@
+.hero-purpose { color: var(--text-main); font-size: clamp(.9rem, 1.4vw, 1.1rem); line-height: 1.6; max-width: 600px; margin: 12px auto 0; text-wrap: balance; }
+.home-quick-help { display: flex; align-items: flex-start; justify-content: center; gap: 24px; flex-wrap: wrap; margin: 0 0 30px; }
+.find-member-link { color: var(--text-main); text-decoration: none; font-size: .85rem; padding: 10px 2px; }
+.find-member-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+.site-guide { max-width: 680px; color: var(--text-muted); font-size: .85rem; }
+.site-guide summary { cursor: pointer; padding: 10px 0; }
+.site-guide summary:focus-visible { outline: 3px solid var(--text-main); outline-offset: 3px; }
+.site-guide[open] { flex-basis: 100%; }
+.site-guide-content { border-left: 2px solid var(--border-subtle); padding: 4px 16px; line-height: 1.7; }
+.site-guide-content p { margin: 8px 0; }
+.site-guide-content strong { color: var(--text-main); }
+.view-utility-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding: 12px 2px 4px; }
+.period-label { font-size: .9rem; font-weight: 700; color: var(--text-main); margin: 0 0 5px; }
+.publication-label, .footer-publication { font-size: .78rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+.view-description { font-size: .85rem; color: var(--text-muted); line-height: 1.7; margin: 8px 2px 18px; }
+/* Podyum başlığı ile dönem bilgisi tek, kompakt bir alan oluşturur. */
+.page-view.active:is(#view-rnr, #view-alltime) { gap: 24px; }
+.podium-summary { padding: 12px 2px 0; gap: 6px 24px; }
+.period-meta { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 18px; }
+.podium-summary .period-label { margin: 0; }
+.ranking-summary-copy { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.ranking-summary-copy .view-description { margin: 0; font-size: .8rem; }
+.podium-summary .data-status { flex-basis: 100%; max-width: none; }
+.podium-summary .data-status:has(p[hidden]):has(button[hidden]) { display: none; }
+.ranking-help { position: relative; display: inline-flex; flex-shrink: 0; }
+.ranking-help-button { display: inline-grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--border-subtle); border-radius: 50%; background: transparent; color: var(--text-muted); font: inherit; font-size: .75rem; font-weight: 700; cursor: pointer; }
+.ranking-help-button:hover { color: var(--text-main); border-color: var(--text-muted); }
+.ranking-help-tooltip { position: absolute; top: calc(100% + 8px); right: 0; width: min(300px, calc(100vw - 48px)); z-index: 120; padding: 10px 13px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); background: var(--bg-surface); color: var(--text-main); box-shadow: 0 6px 20px rgba(0, 0, 0, .18); font-size: .8rem; line-height: 1.6; visibility: hidden; opacity: 0; transition: opacity .15s ease; }
+.ranking-help:is(:hover, :focus-within, .help-open):not(.help-dismissed) .ranking-help-tooltip { visibility: visible; opacity: 1; }
+.data-status { display: flex; align-items: center; gap: 12px; max-width: 520px; }
+.data-status p { font-size: .8rem; line-height: 1.6; margin: 0; color: var(--text-muted); }
+.subtle-button { font: inherit; font-size: .8rem; color: var(--text-main); background: transparent; border: 1px solid var(--border-subtle); border-radius: 999px; padding: 9px 14px; cursor: pointer; flex-shrink: 0; }
+.subtle-button:hover:not(:disabled) { background: var(--bg-surface); border-color: var(--text-muted); }
+.subtle-button:disabled { opacity: .55; cursor: default; }
+.member-filter-dock { flex-wrap: wrap; }
+.member-result-count { color: var(--text-muted); font-size: .82rem; margin: 12px 0; }
+#memberDirectory { scroll-margin-top: 90px; }
+.search-empty { color: var(--text-main); font-size: .9rem; padding: 18px 0; line-height: 1.7; }
+.pedestal-group[hidden], .subtle-button[hidden], .data-status p[hidden], .search-empty[hidden] { display: none; }
+.podium-person { display: block; overflow: hidden; text-overflow: ellipsis; }
+.shared-place .name { white-space: normal; overflow: visible; font-size: clamp(.85rem, 1.3vw, 1.1rem); }
+.shared-place .podium-person { margin: 0 0 8px; overflow-wrap: anywhere; }
+.podium-person small { display: block; font-size: .72rem; font-weight: 500; color: var(--text-muted); margin-top: 2px; }
+.mini-step.empty-place { visibility: hidden; }
+.footer-publication { max-width: 250px; }
+.dept, .roster-dept { text-transform: none; }
+.panel-title.case-preserve { text-transform: none; }
+@media (max-width: 600px) {
+  .hero-purpose { max-width: 300px; }
+  .home-quick-help { gap: 8px 20px; }
+  .view-utility-bar { align-items: flex-start; }
+  .ranking-summary-copy { margin-left: 0; width: 100%; justify-content: space-between; }
+  .data-status { flex-wrap: wrap; }
+  .member-filter-dock .member-search-box { flex-basis: 100%; width: 100%; }
+  .shared-place .name { font-size: .8rem; }
+}
+/* Dönem seçimi, arşiv başlığının yanında küçük bir yerel açılır listedir. */
+.season-heading-row { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+.season-heading-row .flow-subheading { color: var(--text-muted); }
+.season-picker { position: relative; display: inline-flex; align-items: center; }
+.season-picker select { appearance: none; border: 0; border-radius: 999px; padding: 7px 25px 7px 10px; font: inherit; font-size: 12px; font-weight: 700; color: var(--text-main); background: rgba(127, 127, 127, .08); cursor: pointer; }
+.season-picker select option { color: var(--text-main); background: var(--bg-surface); }
+.season-arrow { position: absolute; right: 9px; pointer-events: none; color: var(--text-muted); font-size: 11px; }
+.season-catalog-feedback { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--text-muted); font-size: 12px; margin: 8px 0; }
+.season-catalog-feedback:has(#seasonCatalogStatus:empty) { display: none; }
+.roster-scope { color: var(--text-muted); font-size: 13px; line-height: 1.6; margin: 12px 0; }
+@media (max-width: 600px) { .season-heading-row { justify-content: flex-start; gap: 8px; } }

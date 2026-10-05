@@ -1,0 +1,79 @@
+/* Denizli: üyelerin deneyimleri ve şube hafızası için doldurulabilir şablon. */
+#view-denizli { --denizli-accent: var(--brand-primary); padding-top: clamp(20px, 4vw, 56px); }
+html[data-theme="light"] #view-denizli { --denizli-accent: #087b55; }
+#view-denizli h1, #view-denizli h2, #view-denizli h3, #view-denizli h4 { color: var(--text-bright); }
+#view-denizli p, #view-denizli blockquote { line-height: 1.75; }
+.denizli-eyebrow { font-size: .7rem; font-weight: 800; letter-spacing: .14em; color: var(--denizli-accent); }
+#view-denizli .denizli-text-ref { display: inline; font-size: .65rem; line-height: 1.4; font-weight: 500; letter-spacing: .02em; color: var(--denizli-accent); white-space: nowrap; vertical-align: middle; }
+.denizli-hero-figure figcaption:has(.denizli-text-ref) { display: block; }
+#view-denizli .denizli-byline .denizli-text-ref { display: inline; margin: 0; font-weight: 500; }
+.denizli-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.denizli-hero h1 { margin: 22px 0; font-size: clamp(2.1rem, 4.5vw, 4.6rem); line-height: 1.06; letter-spacing: -.045em; font-weight: 900; }
+.denizli-hero h1 span { color: var(--denizli-accent); }
+.denizli-intro { max-width: 510px; color: var(--text-muted); font-size: clamp(.95rem, 1.3vw, 1.1rem); }
+.denizli-section-nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 30px; }
+.denizli-section-nav button { background: none; border: 0; border-bottom: 1px solid var(--border-subtle); padding: 8px 0; color: var(--text-main); font-size: .82rem; cursor: pointer; }
+.denizli-section-nav button:hover { color: var(--denizli-accent); border-color: currentColor; }
+.denizli-section-nav button span { margin-left: 10px; color: var(--denizli-accent); }
+.denizli-hero-figure { min-width: 0; }
+.denizli-hero-figure figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; font-size: .75rem; color: var(--text-muted); }
+.denizli-photo { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 100%; min-width: 0; aspect-ratio: 3 / 2; padding: 42px 18px 26px; border: 1px solid var(--border-subtle); background: linear-gradient(135deg, rgba(91,117,79,.11), rgba(0,193,110,.035)); color: var(--text-muted); text-align: center; font-size: .86rem; }
+.denizli-photo::before, .denizli-photo::after { content: ''; position: absolute; width: 25px; height: 25px; border-color: var(--denizli-accent); opacity: .45; pointer-events: none; }
+.denizli-photo::before { top: 12px; left: 12px; border-top: 1px solid; border-left: 1px solid; }
+.denizli-photo::after { bottom: 12px; right: 12px; border-bottom: 1px solid; border-right: 1px solid; }
+.denizli-photo-id { position: absolute; top: 18px; right: 18px; font-size: .62rem; letter-spacing: .1em; color: var(--denizli-accent); }
+.denizli-photo small { font-size: .7rem; }
+.denizli-photo-cover { aspect-ratio: 5 / 4; }
+.denizli-photo-portrait { aspect-ratio: 4 / 5; }
+.denizli-section { margin-top: clamp(64px, 9vw, 124px); padding-top: 30px; border-top: 1px solid var(--border-subtle); scroll-margin-top: 90px; }
+.denizli-section-heading { margin-bottom: 32px; max-width: 720px; }
+.denizli-section-heading h2 { margin: 14px 0; font-size: clamp(1.7rem, 3vw, 3rem); line-height: 1.17; letter-spacing: -.035em; }
+.denizli-section-heading > p:last-child:not(.denizli-eyebrow) { color: var(--text-muted); max-width: 600px; font-size: .95rem; }
+.denizli-story-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 6vw, 90px); }
+.denizli-placeholder-text { color: var(--text-muted); font-size: .9rem; }
+.denizli-story-copy p + p { margin-top: 20px; }
+.denizli-timeline { list-style: none; border-left: 1px solid var(--border-subtle); padding-left: 24px; }
+.denizli-timeline li { position: relative; padding-bottom: 24px; }
+.denizli-timeline li:last-child { padding-bottom: 0; }
+.denizli-timeline li::before { content: ''; position: absolute; width: 7px; height: 7px; border-radius: 50%; left: -28px; top: 6px; background: var(--denizli-accent); }
+.denizli-timeline span, .denizli-meta { font-size: .7rem; color: var(--denizli-accent); letter-spacing: .045em; }
+.denizli-timeline h3 { margin: 7px 0 5px; font-size: 1rem; }
+.denizli-timeline p { color: var(--text-muted); font-size: .83rem; }
+.denizli-experience-grid, .denizli-city-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.denizli-experience-card, .denizli-board { min-width: 0; border-bottom: 1px solid var(--border-subtle); }
+.denizli-card-copy { padding: 22px 0 26px; }
+.denizli-card-copy h3, .denizli-card-copy h4 { margin: 10px 0 16px; font-size: 1.25rem; letter-spacing: -.02em; }
+#view-denizli blockquote { margin: 0 0 22px; color: var(--text-main); font-size: .93rem; }
+.denizli-byline { font-size: .8rem; font-weight: 700; color: var(--text-bright); }
+.denizli-byline span { display: block; color: var(--text-muted); font-weight: 400; margin-top: 3px; }
+.denizli-memory { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 32px; margin-top: 42px; }
+.denizli-memory h3 { font-size: 1.6rem; margin: 12px 0 18px; }
+.denizli-memory .denizli-meta { display: block; margin-top: 20px; }
+.denizli-group-title { margin: 40px 0 22px; font-size: 1.1rem; font-weight: 500; }
+.denizli-president-grid, .denizli-board-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.denizli-president { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.denizli-quote-copy h4 { margin: 10px 0 18px; font-size: 1.3rem; }
+.denizli-city-section { margin-bottom: 40px; }
+.denizli-city-grid .denizli-photo { aspect-ratio: 16 / 9; }
+.denizli-city-grid h3 { margin: 18px 0 10px; font-size: 1.05rem; }
+.denizli-city-grid p { color: var(--text-muted); font-size: .87rem; }
+#view-denizli img { display: block; max-width: 100%; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 1050px) and (min-width: 761px) {
+  .denizli-president { grid-template-columns: minmax(0, 1fr); }
+  .denizli-president .denizli-photo { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 760px) {
+  .denizli-hero, .denizli-story-grid, .denizli-memory, .denizli-experience-grid, .denizli-president-grid, .denizli-board-grid, .denizli-city-grid { grid-template-columns: minmax(0, 1fr); }
+  .denizli-hero { gap: 28px; }
+  .denizli-hero h1 { margin-top: 18px; }
+  .denizli-photo-cover { aspect-ratio: 4 / 3; }
+  .denizli-experience-grid, .denizli-city-grid { gap: 32px; }
+  .denizli-president { gap: 18px; }
+  .denizli-memory { gap: 22px; }
+  .denizli-section-heading { margin-bottom: 24px; }
+  #view-denizli blockquote { font-size: .86rem; }
+}
+@media (max-width: 420px) {
+  .denizli-president { grid-template-columns: minmax(0, 1fr); }
+  .denizli-president .denizli-photo { width: 66%; }
+}

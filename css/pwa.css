@@ -1,0 +1,21 @@
+.pwa-install-button[hidden], .pwa-panel[hidden], .pwa-connection[hidden], .pwa-media-note[hidden] { display: none !important; }
+.pwa-install-button { font: inherit; color: var(--text-main); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 9px 12px; cursor: pointer; }
+.pwa-stack { position: fixed; bottom: max(16px, env(safe-area-inset-bottom)); right: max(16px, env(safe-area-inset-right)); width: min(380px, calc(100vw - 32px)); z-index: 150; display: grid; gap: 12px; pointer-events: none; }
+.pwa-panel { pointer-events: auto; background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 18px; box-shadow: 0 12px 42px rgba(0,0,0,.22); max-height: 65dvh; overflow-y: auto; }
+.pwa-panel h2 { font-size: 1rem; margin-bottom: 8px; line-height: 1.4; }
+.pwa-panel p, .pwa-panel ol { font-size: .88rem; line-height: 1.6; }
+.pwa-panel ol { padding-left: 22px; margin-top: 10px; }
+.pwa-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.pwa-actions button { min-height: 44px; padding: 10px 14px; border-radius: 6px; border: 1px solid var(--border-subtle); cursor: pointer; background: var(--bg-base); color: var(--text-main); font: inherit; font-size: .88rem; font-weight: 700; }
+.pwa-actions .pwa-primary { background: #007c3c; color: #fff; border-color: #007c3c; }
+.pwa-actions button:disabled { opacity: .65; cursor: progress; }
+.pwa-connection { margin: 12px auto; padding: 12px 16px; max-width: var(--container-max-width); border: 1px solid var(--border-subtle); border-left: 4px solid #a06400; border-radius: 6px; background: var(--bg-surface); color: var(--text-main); font-size: .88rem; line-height: 1.6; }
+.pwa-connection[data-state="error"] { border-left-color: #c33928; }
+.pwa-media-note { padding: 12px; background: var(--bg-surface); color: var(--text-muted); font-size: .88rem; }
+body.is-offline iframe { display: none; }
+body.pwa-drawer-open .pwa-stack { visibility: hidden; }
+@media (display-mode: standalone) {
+  .global-navbar { height: calc(64px + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); }
+  .global-bottom-bar { padding-bottom: max(20px, env(safe-area-inset-bottom)); }
+}
+@media (max-width: 480px) { .pwa-stack { right: 12px; width: calc(100vw - 24px); } }
