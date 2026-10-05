@@ -24,7 +24,7 @@
     <section class="pwa-panel" id="pwaInstallPanel" aria-labelledby="pwaInstallTitle" hidden>
       <h2 id="pwaInstallTitle">AIESEC Denizli’yi yükle</h2>
       <p id="pwaInstallDescription">Ana ekranından uygulama gibi aç; son kaydedilen sıralamalara çevrimdışı da ulaş.</p>
-      <ol id="pwaIosSteps" hidden><li>Siteyi Safari’de aç.</li><li>Paylaş menüsünde <strong>Ana Ekrana Ekle</strong> seçeneğine dokun.</li><li>Varsa <strong>Web Uygulaması Olarak Aç</strong> seçeneğini açık bırak ve <strong>Ekle</strong> ile tamamla.</li></ol>
+      <ol id="pwaIosSteps" hidden><li>Siteyi Safari’de aç.</li><li>Paylaş menüsünde <strong>Ana Ekrana Ekle</strong> seçeneğine dokun.</li><li>Varsa <strong>Web Uygulaması Olarak Aç</strong> seçeneğini onayla.</li></ol>
       <div class="pwa-actions"><button type="button" class="pwa-primary" id="pwaInstall">Yükle</button><button type="button" id="pwaInstallLater">Şimdi değil</button></div>
       <p id="pwaInstallStatus" role="status"></p>
     </section>`;
@@ -116,16 +116,15 @@
     if (event.key === 'Escape' && !installPanel.hidden) dismissOffer();
   });
 
-  let preparationFailed = false;
   function showConnection() {
     const offline = navigator.onLine === false;
     document.body.classList.toggle('is-offline', offline);
     document.querySelectorAll('.pwa-media-note').forEach(note => { note.hidden = !offline; });
-    connection.hidden = !offline && !preparationFailed;
-    connection.dataset.state = offline ? 'offline' : 'error';
+    connection.hidden = !offline;
+    connection.dataset.state = offline ? 'offline' : 'online';
     connection.textContent = offline
       ? 'Çevrimdışısın. Kaydı olan bölümlerde son kaydedilen veriler gösterilir; yeni veriler, videolar ve dış bağlantılar için internet gerekir.'
-      : preparationFailed ? 'Çevrimdışı kullanım hazırlanamadı. İnternet bağlantısıyla siteyi tekrar açabilirsin.' : '';
+      : '';
   }
   window.addEventListener('offline', () => {
     showConnection();
@@ -183,23 +182,16 @@
       function watchWorker(worker) {
         worker?.addEventListener('statechange', () => {
           if (worker.state === 'installed') offerUpdate();
-          if (worker.state === 'redundant' && !reg.active) {
-            preparationFailed = true;
-            if (readyLabel) readyLabel.textContent = 'Çevrimdışı kullanım hazırlanamadı.';
-            showConnection();
-          }
         });
       }
       watchWorker(reg.installing);
       reg.addEventListener('updatefound', () => watchWorker(reg.installing));
       navigator.serviceWorker.ready.then(() => {
-        preparationFailed = false;
         if (readyLabel) readyLabel.textContent = 'Arayüz çevrimdışı kullanıma hazır. Veriler görüntülendikçe kaydedilir.';
         showConnection();
       });
     }).catch(() => {
-      preparationFailed = true;
-      if (readyLabel) readyLabel.textContent = 'Çevrimdışı kullanım hazırlanamadı.';
+      if (readyLabel) readyLabel.textContent = 'Uygulama kurulumu ve çevrimdışı açılış için HTTPS ve destekleyen bir tarayıcı gerekir.';
       showConnection();
     });
     document.addEventListener('visibilitychange', () => {
